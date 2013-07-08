@@ -1,0 +1,26 @@
+{% load staticfiles %}
+
+<html>
+<head>
+	<title>main</title>
+	<link rel="stylesheet" type="text/css" href="{% static "css/master.css" %}">
+	{% block head %}
+	{% endblock head %}
+</head>
+<body>
+	<div id="content">
+		<div id="header">
+			<div id="site-logo">n</div>
+			{% if user.is_authenticated %}
+				<div id="user-info">{{ user.username }}	| <a href="{% url 'story' %}">submit</a> | <a href="{% url 'logout' %}">logout</a>
+				</div>
+			{% else %}
+				<div id="user-info"><a href="{% url 'login' %}">login</a></div>
+			{% endif %}
+			<div id="site-title"><h1>main</h1></div>
+		</div>
+		{% block content %}
+		{% endblock content %}
+	</div>
+</body>
+</html>
